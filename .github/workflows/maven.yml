@@ -15,6 +15,12 @@ on:
     paths-ignore:
       - 'README.md'
   workflow_dispatch:
+    inputs:
+      debug:
+        description: Enable debug output
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -32,5 +38,5 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Print current user
-      run: |
-        echo "current user is: ${{ github.actor }}"
+      if: ${{ inputs.debug == true }}
+      run: echo "current user is: ${{ github.actor }}"
