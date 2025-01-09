@@ -31,3 +31,5 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Print current user
+      run: echo "current user is: ${{ github.actor }}"
