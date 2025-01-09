@@ -39,4 +39,5 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Print current user
       if: ${{ inputs.debug == true }}
-      run: echo "current user is: ${{ github.actor }}"
+      run: |
+        echo "current user is: ${{ github.actor }}"
