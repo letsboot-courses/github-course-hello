@@ -45,7 +45,7 @@ jobs:
       uses: dorny/test-reporter@v1
       with:
         name: JUnit Test Results
-        path: "test-results/**/*.xml"
+        path: "target/surefire-reports/*.xml"
         reporter: java-junit  
     - name: Save artifact
       uses: actions/upload-artifact@v4
