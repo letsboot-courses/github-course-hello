@@ -24,4 +24,11 @@ class HelloWorldApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(equalTo("Greetings from Letsboot!")));
 	}
+
+	@Test
+	public void getStatus() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.get("/status").accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().string(equalTo("up")));
+	}
 }

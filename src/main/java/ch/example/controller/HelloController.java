@@ -14,4 +14,9 @@ public class HelloController {
 	public String index() {
 		return "Greetings from " + greeter + "!";
 	}
+
+	@GetMapping("/status")
+	public String status() {
+		return "up";
+	}
 }
