@@ -41,7 +41,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package -DskipTests --file pom.xml
     - name: Print current user
       if: ${{ inputs.debug == true }}
       run: |
@@ -58,3 +58,39 @@ jobs:
         name: hello-app
         path: target/*.jar
         retention-days: 2
+
+  test:
+    
+    needs: build
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - name: Set up Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ vars.NODE_VERSION }}
+    - name: Build with Maven
+      run: mvn -B test --file pom.xml
+    - name: Display test results
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: JUnit Test Results
+        path: target/surefire-reports/*.xml
+        reporter: java-junit
+    - name: Cypress run
+      uses: cypress-io/github-action@v6
+    - name: Publish Cypress Test Results
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: Cypress Test Results
+        path: target/cypress/junit/*.xml
+        reporter: java-junit
