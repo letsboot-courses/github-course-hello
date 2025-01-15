@@ -46,12 +46,6 @@ jobs:
       if: ${{ inputs.debug == true }}
       run: |
         echo "current user is: ${{ github.actor }}"
-    - name: Display test results
-      uses: dorny/test-reporter@v1
-      with:
-        name: JUnit Test Results
-        path: target/surefire-reports/*.xml
-        reporter: java-junit  
     - name: Save artifact
       uses: actions/upload-artifact@v4
       with:
