@@ -76,7 +76,7 @@ jobs:
         path: target/surefire-reports/*.xml
         reporter: java-junit
     - name: Spring Boot Backend starten
-        run: mvn spring-boot:run &
+      run: mvn spring-boot:run &
     - name: Set up Node
       uses: actions/setup-node@v4
       with:
