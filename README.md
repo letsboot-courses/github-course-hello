@@ -21,3 +21,9 @@ Optionally you can set the APP_GREETER environment variable.
 ```
 curl http://localhost:8080/hello
 ```
+
+Cypress
+```
+npm install cypress --save-dev
+npx cypress run
+```
