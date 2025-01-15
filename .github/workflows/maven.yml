@@ -30,6 +30,7 @@ permissions:
 jobs:
   build:
 
+    name: Build with Maven
     runs-on: ubuntu-22.04
 
     steps:
@@ -46,24 +47,10 @@ jobs:
       if: ${{ inputs.debug == true }}
       run: |
         echo "current user is: ${{ github.actor }}"
-    - name: Save artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: hello-app
-        path: target/*.jar
-        retention-days: 2
-
-  test:
-    
-    needs: build
-    runs-on: ubuntu-22.04
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 17
+    - name: Set up JDK ${{ vars.JAVA_VERSION}}
       uses: actions/setup-java@v4
       with:
-        java-version: '17'
+        java-version: ${{ vars.JAVA_VERSION}}
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
@@ -74,13 +61,38 @@ jobs:
       with:
         name: JUnit Test Results
         path: target/surefire-reports/*.xml
-        reporter: java-junit
+        reporter: java-junit  
+    - name: Save artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: hello-app
+        path: target/*.jar
+        retention-days: 2
+
+  test:
+
+    strategy:
+      matrix:
+        version: [18, 20, 22]
+    
+    name: Test with Cypress and Node ${{ matrix.version }}
+    runs-on: ubuntu-22.04
+    needs: build
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK ${{ vars.JAVA_VERSION}}
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ vars.JAVA_VERSION}}
+        distribution: 'temurin'
+        cache: maven
     - name: Spring Boot Backend starten
       run: mvn spring-boot:run &
     - name: Set up Node
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ vars.NODE_VERSION }}
+        node-version: ${{ matrix.version }}
     - name: Cypress run
       uses: cypress-io/github-action@v6
     - name: Publish Cypress Test Results
