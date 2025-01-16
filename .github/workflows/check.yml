@@ -13,3 +13,8 @@ jobs:
         uses: ./.github/workflows/check-directory-action
         with:
           dir: './src'
+
+      - name: Check if the 'nothere' directory exists
+        uses: ./.github/workflows/check-directory-action
+        with:
+        dir: './nothere'
