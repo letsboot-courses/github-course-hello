@@ -10,7 +10,7 @@
 	</parent>
 
 	<groupId>ch.github.course</groupId>
-	<artifactId>${your.github.username}-app</artifactId>
+	<artifactId>${your.github.repository}</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<name>github-course-hello</name>
@@ -18,8 +18,8 @@
 
 	<properties>
 		<java.version>17</java.version>
-		<!-- ADD YOUR GITHUB USERNAME HERE -->
-		<your.github.username>hello</your.github.username>
+		<!-- ADD YOUR GITHUB REPOSITORY HERE -->
+		<your.github.repository>github-course-hello</your.github.repository>
 	</properties>
 
 	<dependencies>
@@ -52,14 +52,14 @@
 	<scm>
 		<connection>scm:git:${project.scm.url}</connection>
 		<developerConnection>scm:git:${project.scm.url}</developerConnection>
-		<url>https://github.com/letsboot-courses/${your.github.username}.git</url>
+		<url>https://github.com/letsboot-courses/${your.github.repository}.git</url>
 		<tag>HEAD</tag>
 	</scm>
 
 	<distributionManagement>
 		<repository>
 			<id>github</id>
-			<url>https://github.com/letsboot-courses/${your.github.username}</url>
+			<url>https://github.com/letsboot-courses/${your.github.repository}</url>
 		</repository>
 	</distributionManagement>
 
