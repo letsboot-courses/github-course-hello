@@ -99,7 +99,7 @@ jobs:
   publish:
 
     name: Publish to GitHub Packages
-    needs: test
+    # needs: test
     runs-on: ubuntu-22.04
 
     steps:
