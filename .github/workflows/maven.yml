@@ -113,11 +113,11 @@ jobs:
         # server-id: github
         server-username: ${{ github.actor }}
         # server-username: letsboot-courses
-        server-password: ${{ secrets.GH_PACKAGES_TOKEN }}
-        # server-password: ${{ secrets.GITHUB_TOKEN }}
+        # server-password: ${{ secrets.GH_PACKAGES_TOKEN }}
+        server-password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Deploy with Maven
       run: mvn -B deploy --file pom.xml
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
