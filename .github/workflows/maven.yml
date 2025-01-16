@@ -110,7 +110,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
         server-id: github
-        server-username: ${{ secrets.GH_PACKAGES_USERNAME }}
+        server-username: ${{ github.actor }}
         server-password: ${{ secrets.GH_PACKAGES_TOKEN }}
     - name: Deploy with Maven
       run: mvn -B deploy --file pom.xml
