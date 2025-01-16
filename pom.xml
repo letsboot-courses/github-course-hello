@@ -60,8 +60,11 @@
 		<repository>
 			<id>github</id>
 			<url>https://maven.pkg.github.com/letsboot-courses/${your.github.repository}</url>
-			<!-- <url>https://maven.pkg.github.com/letsboot-courses/github-course-maven</url> -->
 		</repository>
+		<snapshotRepository>
+			<id>github</id>
+			<url>https://maven.pkg.github.com/letsboot-courses/${your.github.repository}</url>
+		</snapshotRepository>
 	</distributionManagement>
 
 	<repositories>
