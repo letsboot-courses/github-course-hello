@@ -115,5 +115,9 @@ jobs:
         # server-username: letsboot-courses
         # server-password: ${{ secrets.GH_PACKAGES_TOKEN }}
         # server-password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
     - name: Deploy with Maven
       run: mvn -B deploy --file pom.xml
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
