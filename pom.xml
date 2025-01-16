@@ -13,7 +13,7 @@
 	<artifactId>${your.github.repository}</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>github-course-hello</name>
+	<name>${your.github.repository}</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
