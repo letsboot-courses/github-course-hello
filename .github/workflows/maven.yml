@@ -111,7 +111,7 @@ jobs:
         cache: maven
         server-id: github
         # server-username: ${{ github.actor }}
-        server-username: ${{ secrets.GITHUB_ACTOR }}
+        server-username: letsboot-courses
         # server-password: ${{ secrets.GH_PACKAGES_TOKEN }}
         server-password: ${{ secrets.GITHUB_TOKEN }}
     - name: Deploy with Maven
