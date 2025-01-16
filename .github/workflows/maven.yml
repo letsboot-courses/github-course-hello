@@ -94,3 +94,23 @@ jobs:
         name: Cypress Test Results (Node ${{ matrix.version }})
         path: cypress/results/junit/*.xml
         reporter: java-junit
+
+  publish:
+
+    name: Publish to GitHub Packages
+    needs: test
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK ${{ vars.JAVA_VERSION}}
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ vars.JAVA_VERSION}}
+        distribution: 'temurin'
+        cache: maven
+        server-id: github
+        server-username: ${{ secrets.GH_PACKAGES_USERNAME }}
+        server-password: ${{ secrets.GH_PACKAGES_TOKEN }}
+    - name: Deploy with Maven
+      run: mvn -B deploy --file pom.xml
