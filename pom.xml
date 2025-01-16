@@ -59,7 +59,8 @@
 	<distributionManagement>
 		<repository>
 			<id>github</id>
-			<url>https://maven.pkg.github.com/letsboot-courses/github-course-maven</url>
+			<url>https://maven.pkg.github.com/letsboot-courses/${your.github.repository}</url>
+			<!-- <url>https://maven.pkg.github.com/letsboot-courses/github-course-maven</url> -->
 		</repository>
 	</distributionManagement>
 
