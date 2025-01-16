@@ -1,0 +1,15 @@
+name: Check Directory Example
+
+on: [push]
+
+jobs:
+  check-dir:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check if the 'src' directory exists
+        uses: ./check-directory-action
+        with:
+          dir: './src'
