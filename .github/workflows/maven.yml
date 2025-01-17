@@ -86,7 +86,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Spring Boot Backend starten
-      run: mvn spring-boot:run &
+      run: mvn -B spring-boot:run --file pom.xml &
     - name: Set up Node ${{ matrix.version }}
       uses: actions/setup-node@v4
       with:
