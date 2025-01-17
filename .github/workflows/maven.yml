@@ -98,7 +98,7 @@ jobs:
       with:
         node-version: ${{ matrix.version }}
     - name: Run Cypress Tests
-        run: npx cypress run --env PORT=$PORT
+      run: npx cypress run --env PORT=$PORT
     # - name: Cypress run
       # uses: cypress-io/github-action@v6
       # env:
