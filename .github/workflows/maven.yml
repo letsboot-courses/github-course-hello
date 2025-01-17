@@ -91,7 +91,6 @@ jobs:
       uses: cypress-io/github-action@v6
       with:
           browser: chrome
-          record: true
           parallel: true
 
     # - name: Run Cypress with xvfb
