@@ -33,7 +33,7 @@ jobs:
   build:
 
     name: Build with Maven
-    runs-on: github-course-runner
+    runs-on: self-hosted
 
     steps:
     - uses: actions/checkout@v4
@@ -70,7 +70,7 @@ jobs:
         version: [18, 20, 22]
     
     name: Test with Cypress and Node ${{ matrix.version }}
-    runs-on: github-course-runner
+    runs-on: self-hosted
     needs: build
 
     steps:
@@ -101,7 +101,7 @@ jobs:
 
     name: Publish to GitHub Packages
     needs: test
-    runs-on: github-course-runner
+    runs-on: self-hosted
 
     steps:
     - uses: actions/checkout@v4
