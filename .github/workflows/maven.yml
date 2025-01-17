@@ -87,11 +87,15 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.version }}
-    # - name: Cypress run
-    #   uses: cypress-io/github-action@v6
+    - name: Cypress run
+      uses: cypress-io/github-action@v6
+      with:
+          browser: chrome
+          record: true
+          parallel: true
 
-    - name: Run Cypress with xvfb
-      run: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" npx cypress run
+    # - name: Run Cypress with xvfb
+      # run: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" npx cypress run
     
     - name: Publish Cypress Test Results
       uses: dorny/test-reporter@v1
