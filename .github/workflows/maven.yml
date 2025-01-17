@@ -97,10 +97,12 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.version }}
-    - name: Cypress run
-      uses: cypress-io/github-action@v6
-      env:
-        CYPRESS_BACKEND_PORT: ${{ env.PORT }}
+    - name: Run Cypress Tests
+        run: npx cypress run --env PORT=$PORT
+    # - name: Cypress run
+      # uses: cypress-io/github-action@v6
+      # env:
+        # CYPRESS_BACKEND_PORT: ${{ env.PORT }}
     - name: Publish Cypress Test Results
       uses: dorny/test-reporter@v1
       if: always()
