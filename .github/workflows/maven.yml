@@ -100,7 +100,7 @@ jobs:
     - name: Cypress run
       uses: cypress-io/github-action@v6
       env:
-          PORT: ${{ env.PORT }}
+        CYPRESS_BACKEND_PORT: ${{ env.PORT }}
     - name: Publish Cypress Test Results
       uses: dorny/test-reporter@v1
       if: always()
