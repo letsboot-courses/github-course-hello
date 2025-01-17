@@ -88,7 +88,7 @@ jobs:
     # - name: Spring Boot Backend starten
       # run: mvn -B spring-boot:run --file pom.xml &
     - name: Build with Maven
-      run: mvn clean package
+      run: mvn -B package --file pom.xml
     - name: Run Backend
       run: java -jar target/*.jar
     - name: Set up Node ${{ matrix.version }}
