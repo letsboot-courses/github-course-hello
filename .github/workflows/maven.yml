@@ -14,6 +14,7 @@ on:
       - main
     paths-ignore:
       - 'README.md'
+      - '.github/workflows/check-directory-action'
   workflow_dispatch:
     inputs:
       debug:
@@ -32,7 +33,7 @@ jobs:
   build:
 
     name: Build with Maven
-    runs-on: ubuntu-22.04
+    runs-on: github-course-runner
 
     steps:
     - uses: actions/checkout@v4
@@ -69,7 +70,7 @@ jobs:
         version: [18, 20, 22]
     
     name: Test with Cypress and Node ${{ matrix.version }}
-    runs-on: ubuntu-22.04
+    runs-on: github-course-runner
     needs: build
 
     steps:
@@ -100,7 +101,7 @@ jobs:
 
     name: Publish to GitHub Packages
     needs: test
-    runs-on: ubuntu-22.04
+    runs-on: github-course-runner
 
     steps:
     - uses: actions/checkout@v4
