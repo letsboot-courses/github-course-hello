@@ -1,10 +1,11 @@
 const { defineConfig } = require('cypress');
+const port = process.env.PORT || 8080;
 
 module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
     },
-    baseUrl: 'http://localhost:8080',
+    baseUrl: `http://localhost:${port}`,
     specPattern: 'cypress/e2e/**/*.cy.js'
   },
   reporter: 'mocha-junit-reporter',
