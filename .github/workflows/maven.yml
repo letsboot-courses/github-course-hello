@@ -85,8 +85,6 @@ jobs:
         java-version: ${{ vars.JAVA_VERSION}}
         distribution: 'temurin'
         cache: maven
-    # - name: Spring Boot Backend starten
-      # run: mvn -B spring-boot:run --file pom.xml &
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Create random port
@@ -97,12 +95,8 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.version }}
-    # - name: Run Cypress Tests
-      # run: npx cypress run --env PORT=$PORT
     - name: Cypress run
       uses: cypress-io/github-action@v6
-      env:
-        CYPRESS_BACKEND_PORT: ${{ env.PORT }}
     - name: Publish Cypress Test Results
       uses: dorny/test-reporter@v1
       if: always()
