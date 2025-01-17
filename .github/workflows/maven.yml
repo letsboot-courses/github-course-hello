@@ -92,7 +92,7 @@ jobs:
     - name: Create random port
       run: echo "PORT=$(shuf -i 1024-65535 -n 1)" >> $GITHUB_ENV
     - name: Run Backend
-      run: java -jar target/*.jar --server.port=$PORT
+      run: java -jar target/*.jar --server.port=$PORT &
     - name: Set up Node ${{ matrix.version }}
       uses: actions/setup-node@v4
       with:
