@@ -70,11 +70,8 @@ jobs:
         version: [18, 20, 22]
     
     name: Test with Cypress and Node ${{ matrix.version }}
-    runs-on: self-hosted
+    runs-on: ubuntu-22.04
     needs: build
-
-    # container:
-      # image: cypress/included:13.17.0
 
     steps:
     - uses: actions/checkout@v4
@@ -84,12 +81,8 @@ jobs:
         java-version: ${{ vars.JAVA_VERSION}}
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-    - name: Create random port
-      run: echo "PORT=$(shuf -i 1024-65535 -n 1)" >> $GITHUB_ENV
-    - name: Run Backend
-      run: java -jar target/*.jar --server.port=$PORT &
+    - name: Spring Boot Backend starten
+      run: mvn spring-boot:run &
     - name: Set up Node ${{ matrix.version }}
       uses: actions/setup-node@v4
       with:
