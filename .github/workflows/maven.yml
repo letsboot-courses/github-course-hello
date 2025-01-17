@@ -74,6 +74,9 @@ jobs:
     runs-on: self-hosted
     needs: build
 
+    container:
+      image: cypress/included:13.17.0
+
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK ${{ vars.JAVA_VERSION}}
@@ -88,10 +91,13 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.version }}
-    - name: Cypress run
-      uses: cypress-io/github-action@v6
-      with:
-          browser: electron
+    # - name: Cypress run
+    #   uses: cypress-io/github-action@v6
+    #   with:
+    #       browser: electron
+
+      - name: Run Cypress Tests
+        run: npx cypress run
 
     # - name: Run Cypress with xvfb
       # run: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" npx cypress run
