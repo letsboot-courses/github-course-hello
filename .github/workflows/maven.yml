@@ -15,12 +15,6 @@ on:
     paths-ignore:
       - 'README.md'
   workflow_dispatch:
-    inputs:
-      java-version-input:
-        description: Define Java version
-        required: false
-        type: number
-        default: 17
 
 permissions:
   contents: read
@@ -36,7 +30,7 @@ jobs:
     uses: letsboot-courses/github-course-template/.github/workflows/build.yml@main
     secrets: inherit
     with:
-      java-version: ${{ inputs.java-version-input }}
+      java-version: 17
       artifact-name: hello-app-test
       artifact-retention-days: 2
 
@@ -47,7 +41,7 @@ jobs:
     needs: build
     secrets: inherit
     with:
-      java-version: ${{ inputs.java-version-input }}
+      java-version: 17
       node-version: 18
 
   ## wiederverwendbare Schritte für Publish hinzufügen
@@ -57,4 +51,4 @@ jobs:
     needs: test
     secrets: inherit
     with:
-      java-version: ${{ inputs.java-version-input }}
+      java-version: 17
