@@ -44,6 +44,7 @@ jobs:
   test:
     name: Test
     uses: letsboot-courses/github-course-template/.github/workflows/test.yml@main
+    needs: build
     secrets: inherit
     with:
       java-version: ${{ inputs.java-version-input }}
@@ -53,6 +54,7 @@ jobs:
   publish:
     name: Publish
     uses: letsboot-courses/github-course-template/.github/workflows/publish.yml@main
-    # secrets: inherit
+    needs: test
+    secrets: inherit
     with:
       java-version: ${{ inputs.java-version-input }}
