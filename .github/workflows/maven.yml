@@ -14,7 +14,6 @@ on:
       - main
     paths-ignore:
       - 'README.md'
-      - '.github/workflows/check-directory-action'
   workflow_dispatch:
     inputs:
       debug:
@@ -30,38 +29,16 @@ permissions:
   packages: write
 
 jobs:
+
+  ## wiederverwendbare Schritte für Build hinzufügen
   build:
-
-    name: Build with Maven
-    runs-on: self-hosted
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK ${{ vars.JAVA_VERSION}}
-      uses: actions/setup-java@v4
-      with:
-        java-version: ${{ vars.JAVA_VERSION}}
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-    - name: Print current user
-      if: ${{ inputs.debug == true }}
-      run: |
-        echo "current user is: ${{ github.actor }}"
-    - name: Display test results
-      uses: dorny/test-reporter@v1
-      if: always()
-      with:
-        name: JUnit Test Results
-        path: target/surefire-reports/*.xml
-        reporter: java-junit  
-    - name: Save artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: hello-app
-        path: target/*.jar
-        retention-days: 2
+    name: Build
+    uses: letsboot-courses/github-course-template/.github/workflows/build.yml@main
+    secrets: inherit
+    with:
+      java-version: 17
+      artifact-name: hello-app-test
+      artifact-retention-days: 2
 
   test:
 
@@ -70,16 +47,15 @@ jobs:
         version: [18, 20, 22]
     
     name: Test with Cypress and Node ${{ matrix.version }}
-    # runs-on: ubuntu-22.04
     runs-on: self-hosted
     needs: build
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up JDK ${{ vars.JAVA_VERSION}}
+    - name: Set up JDK ${{ vars.JAVA_VERSION }}
       uses: actions/setup-java@v4
       with:
-        java-version: ${{ vars.JAVA_VERSION}}
+        java-version: ${{ vars.JAVA_VERSION }}
         distribution: 'temurin'
         cache: maven
     - name: Spring Boot Backend starten
@@ -106,12 +82,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up JDK ${{ vars.JAVA_VERSION}}
+    - name: Set up JDK ${{ vars.JAVA_VERSION }}
       uses: actions/setup-java@v4
       with:
-        java-version: ${{ vars.JAVA_VERSION}}
+        java-version: ${{ vars.JAVA_VERSION }}
         distribution: 'temurin'
         cache: maven
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
     - name: Deploy with Maven
       run: mvn -B deploy --file pom.xml
       env:
