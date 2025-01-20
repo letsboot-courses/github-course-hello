@@ -53,7 +53,7 @@ jobs:
   publish:
     name: Publish
     uses: letsboot-courses/github-course-template/.github/workflows/publish.yml@main
-    secrets: inherit
+    # secrets: inherit
     with:
       java-version: ${{ inputs.java-version-input }}
-      access-token: ${{ github.token }}
+      access-token: ${{ secrets.GITHUB_TOKEN }}
