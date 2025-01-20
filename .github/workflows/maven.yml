@@ -19,7 +19,7 @@ on:
       java-version-input:
         description: Define Java version
         required: false
-        type: string
+        type: number
         default: 17
 
 permissions:
