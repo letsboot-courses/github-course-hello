@@ -56,4 +56,3 @@ jobs:
     # secrets: inherit
     with:
       java-version: ${{ inputs.java-version-input }}
-      access-token: ${{ secrets.GITHUB_TOKEN }}
