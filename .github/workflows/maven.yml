@@ -35,20 +35,29 @@ jobs:
       artifact-retention-days: 2
 
   ## wiederverwendbare Schritte für Test hinzufügen
-  test:
-    name: Test
-    uses: letsboot-courses/github-course-template/.github/workflows/test.yml@main
+  test-1:
+    name: Test 1
+    uses: .github/workflows/test.yml@main
     needs: build
     secrets: inherit
     with:
       java-version: 17
       node-version: 18
 
+  test-2:
+    name: Test 2
+    uses: .github/workflows/test.yml@main
+    needs: build
+    secrets: inherit
+    with:
+      java-version: 21
+      node-version: 20
+
   ## wiederverwendbare Schritte für Publish hinzufügen
   publish:
     name: Publish
     uses: letsboot-courses/github-course-template/.github/workflows/publish.yml@main
-    needs: test
+    needs: [test-1, test-2]
     secrets: inherit
     with:
       java-version: 17

@@ -1,0 +1,52 @@
+name: Reusable Test with Cypress
+
+on:
+  workflow_call:
+    inputs:
+      java-version:
+        description: Java version
+        required: false
+        type: string
+        default: 17
+      node-version:
+        description: Node version
+        required: false
+        type: string
+        default: 20
+
+permissions:
+  contents: read
+  actions: read
+  checks: write
+  packages: write
+
+jobs:
+
+  test:
+
+    name: Reusable Test with Cypress and Node ${{ inputs.node-version }}
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK ${{ inputs.java-version }}
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ inputs.java-version }}
+        distribution: 'temurin'
+        cache: maven
+    - name: Spring Boot Backend starten
+      run: mvn spring-boot:run &
+    - name: Set up Node ${{ inputs.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+    - name: Cypress run
+      uses: cypress-io/github-action@v6
+    - name: Publish Cypress Test Results
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: Cypress Test Results (Node ${{ inputs.node-version }})
+        path: cypress/results/junit/*.xml
+        reporter: java-junit
