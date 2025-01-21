@@ -32,7 +32,7 @@ jobs:
     with:
       java-version: 17
       artifact-name: hello-app-test
-      artifact-retention-days: 2
+      artifact-retention-days: 5
 
   ## wiederverwendbare Schritte für Test hinzufügen
   test-1:
