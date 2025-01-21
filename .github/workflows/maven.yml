@@ -37,7 +37,7 @@ jobs:
   ## wiederverwendbare Schritte für Test hinzufügen
   test-1:
     name: Test 1
-    uses: ./.github/workflows/test.yml@main
+    uses: ./.github/workflows/test.yml
     needs: build
     secrets: inherit
     with:
@@ -46,7 +46,7 @@ jobs:
 
   test-2:
     name: Test 2
-    uses: ./.github/workflows/test.yml@main
+    uses: ./.github/workflows/test.yml
     needs: build
     secrets: inherit
     with:
