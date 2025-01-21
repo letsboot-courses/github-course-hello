@@ -36,7 +36,7 @@ jobs:
 
   ## wiederverwendbare Schritte für Test hinzufügen
   test-1:
-    name: Test 1
+    name: Test with Java 17 and Node 18
     uses: ./.github/workflows/test.yml
     needs: build
     secrets: inherit
@@ -45,7 +45,7 @@ jobs:
       node-version: 18
 
   test-2:
-    name: Test 2
+    name: Test with Java 21 and Node 20
     uses: ./.github/workflows/test.yml
     needs: build
     secrets: inherit
