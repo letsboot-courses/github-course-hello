@@ -14,20 +14,22 @@ on:
 
 permissions:
   contents: read
-  # Write permissions for pull-requests are required for using the `comment-summary-in-pr` option, comment out if you aren't using this option
+  ## Berechtigung zum Schreiben von Pull-Requests
   pull-requests: write
 
 jobs:
   dependency-review:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: 'Checkout repository'
         uses: actions/checkout@v4
+      ## Dependency Review Action einfügen
       - name: 'Dependency Review'
         uses: actions/dependency-review-action@v4
-        # Commonly enabled options, see https://github.com/actions/dependency-review-action#configuration-options for all available options.
         with:
+          ## Kommentar-Zusammenfassung in PR
           comment-summary-in-pr: always
+          ## Fehler bei Schweregrad
           fail-on-severity: moderate
-          deny-licenses: GPL-1.0-or-later, LGPL-2.0-or-later
-        #   retry-on-snapshot-warnings: true
+          ## Lizenzen verweigern
+          deny-licenses: GPL-1.0-or-later
