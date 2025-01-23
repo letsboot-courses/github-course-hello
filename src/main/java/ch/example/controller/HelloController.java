@@ -19,4 +19,9 @@ public class HelloController {
 	public String status() {
 		return "up";
 	}
+
+	@GetMapping("/feature")
+	public String feature() {
+		return "see my new message";
+	}
 }
