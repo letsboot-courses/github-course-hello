@@ -22,6 +22,6 @@ public class HelloController {
 
 	@GetMapping("/feature")
 	public String feature() {
-		return "this is my new feature";
+		return "see my new message";
 	}
 }
