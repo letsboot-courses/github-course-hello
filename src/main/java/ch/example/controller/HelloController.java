@@ -30,4 +30,12 @@ public class HelloController {
 	public String weather() {
 		return "its sunny";
 	}
+
+	private int compare(int a, int b) {
+		if (a > b) {
+			return a;
+		} else {
+			return b;
+		}
+	}
 }
