@@ -24,4 +24,10 @@ public class HelloController {
 	public String feature() {
 		return "see my new message";
 	}
+
+	// add a new endpoint called weather which returns the string "its sunny"
+	@GetMapping("/weather")
+	public String weather() {
+		return "its sunny";
+	}
 }
