@@ -21,3 +21,9 @@ jobs:
     steps:
       - name: 'Checkout repository'
         uses: actions/checkout@v4
+      - name: 'Dependency Review'
+        uses: actions/dependency-review-action@v4
+        with:
+          comment-summary-in-pr: always
+          fail-on-severity: moderate
+          deny-licenses: GPL-1.0-or-later
