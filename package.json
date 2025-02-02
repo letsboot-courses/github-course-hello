@@ -1,0 +1,16 @@
+{
+  "name": "github-course-hello",
+  "version": "1.0.0",
+  "description": "Einfache Hello World Applikation mit SpringBoot.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.17.0",
+    "mocha-junit-reporter": "^2.2.1"
+  }
+}
